@@ -1,0 +1,312 @@
+/* ---------- Global ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+
+* {
+  font-family: "Noto Sans Thai", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* background-image: url("bg.png"); */
+  background-size: cover;
+  background-position: center;
+  /* min-height: 100vh; */
+  overflow: hidden;
+}
+
+.bg-move {
+  position: absolute;
+  top: -5vh;
+  left: -5vw;
+  z-index: -10;
+  min-width: 110vw;
+  min-height: 110vh;
+  background-image: url('bg.png'); 
+  background-size: cover;
+  background-position: center;
+  transform: translateY(0px) scale(1);
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+/* ---------- Layout Container ---------- */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+}
+
+/* ---------- Desktop (>= 801px) ---------- */
+@media screen and (min-width: 801px) {
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto
+  }
+
+  .sidebar {
+    position: static;
+    width: 300px;
+    height: 100vh;
+    border: 2px solid #ce93d8;
+    background-color: #f3e5f5;
+    border-radius: 16px;
+  }
+
+
+  .dream-container {
+    max-width: 100%;
+  }
+
+  .toggle-btn,
+  .close-btn {
+    display: none !important;
+  }
+}
+
+/* ---------- Mobile (<= 800px) ---------- */
+@media screen and (max-width: 800px) {
+  .sidebar {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    z-index: 1000;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.show {
+    left: 0;
+  }
+
+  .toggle-btn,
+  .close-btn {
+    display: block;
+  }
+
+  .result-box {
+    min-width: 90vw;
+    padding-bottom: 30px;
+  }
+
+  body {
+    padding: 20px;
+    margin-top: 40px;
+  }
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  padding: 15px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.074);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.8px);
+  -webkit-backdrop-filter: blur(4.8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar h2 {
+  color: #f5f0f8;
+  margin-bottom: 3px;
+}
+
+.sidebar p {
+  font-size: 18px;
+  color: #bdb2cb;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #cacacb;
+
+  background: rgba(137, 69, 146, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.8px);
+  -webkit-backdrop-filter: blur(4.8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar li:hover {
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.sidebarHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* ---------- Toggle Button ---------- */
+.toggle-btn {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  z-index: 1100;
+  padding: 10px 15px;
+  background-color: #8974b8;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle-btn:hover {
+  background-color: #ab47bc;
+}
+
+.toggle-btn.hidden {
+  visibility: hidden;
+}
+
+.close-btn {
+  background-color: #9f6ea7;
+  border: none;
+  padding: 0px 20px;
+  margin: 5px;
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* ---------- Dream Container ---------- */
+.dream-container {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 20px;
+  flex: 1;
+  max-width: 800px;
+  width: 100%;
+  max-height: 95vh;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border-radius: 16px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #e9e4ec;
+}
+
+.tagline {
+  font-size: 18px;
+  color: #bdb2cb;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 15px;
+  border-radius: 16px;
+  border: 2px solid #6a1b9a;
+  resize: none;
+  font-size: 16px;
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.127);
+  color: white;
+
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.8px);
+  -webkit-backdrop-filter: blur(4.8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+button#interpretBtn {
+  background-color: #af60d7;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: white;
+  max-width: 200px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button#interpretBtn:hover {
+  background-color: #ab47bc;
+}
+
+/* ---------- Result Box ---------- */
+.result-box {
+  max-width: 60vw;
+  scrollbar-width: none;
+  overflow-y: scroll;
+
+  margin-top: 20px;
+  color: #bdb2cb;
+}
+
+button.newDream {
+  border: none;
+  background: none;
+  color: rgb(180, 164, 197);
+  font-size: 14px;
+  padding-right: 10px;
+  cursor: pointer;
+  height: 30px;
+}
+
+button.newDream:hover {
+  color: #8d7a97;
+}
+
+.dreamsList {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.newDream-icon {
+  fill: #d9cafe;
+  transition: fill 0.3s ease;
+}
+
+.newDream-icon:hover {
+  fill: #e17cfa;
+}
+
+#resultBox::after {
+  animation: blink 1s infinite;
+}
+
+#resultBox {
+  margin-top: 3rem;
+  font-size: 18px;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
