@@ -95,16 +95,9 @@ interpretBtn.addEventListener("click", async () => {
 
   let responseText = await sendPrompt(dreamText);
 
-  console.log(responseText);
-
   responseText = responseText.replace(/```json|```/g, "").trim();
-  
-  console.log(responseText);
-  responseText = JSON.parse(responseText);
 
-  console.log(responseText);
-  
-  // resultBox.innerHTML = `${responseText.interpretation}`;
+  responseText = JSON.parse(responseText);
 
   resultBox.innerHTML = ""; // เคลียร์ก่อน
     let i = 0;
@@ -159,6 +152,7 @@ toggleSidebar.addEventListener("click", () => {
     sidebar.classList.add("show");
     toggleSidebar.classList.add("hidden");
 });
+
 
 closeSidebar.addEventListener("click", () => {
     sidebar.classList.remove("show");
