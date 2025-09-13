@@ -11,7 +11,7 @@ const newDream = document.getElementById("newDream");
 let currentId = null;
 
 async function fetchDreams() {
-  const res = await fetch("http://103.91.204.77:3000/api/dreams");
+  const res = await fetch("http://localhost:3000/api/dreams");
   const dreams = await res.json();
   historyList.innerHTML = "";
   dreams.forEach(addDreamToHistory);
@@ -31,7 +31,7 @@ async function sendPrompt(dreamText) {
   }, 500); // ทุก 500ms
 
   try {
-    const res = await fetch("http://103.91.204.77:3000/api/chat", { // ✅ เรียก backend โดยตรง
+    const res = await fetch("http://localhost:3000/api/chat", { // ✅ เรียก backend โดยตรง
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ dream: prompt }),
@@ -70,7 +70,7 @@ function addDreamToHistory(dream) {
     // คลิกเพื่อลบ
     li.querySelector(".deleteButton").addEventListener("click", async (e) => {
         e.stopPropagation();
-        await fetch(`http://103.91.204.77:3000/api/dreams/${_id}`, { method: "DELETE" });
+        await fetch(`http://localhost:3000/api/dreams/${_id}`, { method: "DELETE" });
         if (currentId === _id) currentId = null;
         fetchDreams();
     });
@@ -118,7 +118,7 @@ interpretBtn.addEventListener("click", async () => {
   if (currentId) {
     // --- UPDATE ---
     try {
-      const res = await fetch(`http://103.91.204.77:3000/api/dreams/${currentId}`, {
+      const res = await fetch(`http://localhost:3000/api/dreams/${currentId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: responseText.title,text: dreamText,interpretation: responseText.interpretation })
@@ -136,7 +136,7 @@ interpretBtn.addEventListener("click", async () => {
     }
   } else {
     // --- CREATE ---
-    const res = await fetch("http://103.91.204.77:3000/api/dreams", {
+    const res = await fetch("http://localhost:3000/api/dreams", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title: responseText.title, text: dreamText,interpretation: responseText.interpretation })
