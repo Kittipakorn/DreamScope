@@ -286,6 +286,7 @@ button.newDream:hover {
   display: flex;
   justify-content: space-between;
   text-align: left;
+  gap: 10px;
 }
 
 .newDream-icon {
@@ -309,4 +310,15 @@ button.newDream:hover {
 @keyframes blink {
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0; }
+}
+
+.main-layout img {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 10;
+  height: 50px;
+  width: auto;
+  object-fit: fill;
+  border-radius: 100%;
 }
